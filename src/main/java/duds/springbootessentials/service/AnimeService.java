@@ -1,6 +1,7 @@
 package duds.springbootessentials.service;
 
 import duds.springbootessentials.domain.Anime;
+import duds.springbootessentials.exception.BadRequestException;
 import duds.springbootessentials.mapper.AnimeMapper;
 import duds.springbootessentials.repository.AnimeRepository;
 import duds.springbootessentials.requests.AnimePostRequestBody;
@@ -28,7 +29,7 @@ public class AnimeService {
 
     public Anime findByIdOrThrowBadRequestException(long id) {
         return animeRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
+                .orElseThrow(() -> new BadRequestException("Anime not Found"));
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
